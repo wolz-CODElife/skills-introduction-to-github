@@ -1,4 +1,7 @@
-# Introduction to GitHub
+⭐️ Congratulations! You've completed this lesson! ⭐️  
+If you would like to practice the steps again, you can retrace your steps below.  
+We won't grade you this time. 😉
+ # Introduction to GitHub
 
 <!-- ![](https://github.com/wolz-CODElife/skills-introduction-to-github/actions/workflows/0-start-course.yml/badge.svg?branch=main) -->
 ![](https://github.com/wolz-CODElife/skills-introduction-to-github/actions/workflows/1-create-a-branch.yml/badge.svg?branch=my-first-branch)
