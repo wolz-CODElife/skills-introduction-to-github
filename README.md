@@ -1,10 +1,10 @@
 # Introduction to GitHub
 
-<!-- ![](../../actions/workflows/0-start-course.yml/badge.svg?branch=main) -->
-![](../../actions/workflows/1-create-a-branch.yml/badge.svg?branch=my-first-branch)
-![](../../actions/workflows/2-commit-a-file.yml/badge.svg?branch=my-first-branch)
-![](../../actions/workflows/3-open-a-pull-request.yml/badge.svg?branch=my-first-branch)
-![](../../actions/workflows/4-merge-your-pull-request.yml/badge.svg?branch=my-first-branch)
+<!-- ![](https://github.com/wolz-CODElife/skills-introduction-to-github/actions/workflows/0-start-course.yml/badge.svg?branch=main) -->
+![](https://github.com/wolz-CODElife/skills-introduction-to-github/actions/workflows/1-create-a-branch.yml/badge.svg?branch=my-first-branch)
+![](https://github.com/wolz-CODElife/skills-introduction-to-github/actions/workflows/2-commit-a-file.yml/badge.svg?branch=my-first-branch)
+![](https://github.com/wolz-CODElife/skills-introduction-to-github/actions/workflows/3-open-a-pull-request.yml/badge.svg?branch=my-first-branch)
+![](https://github.com/wolz-CODElife/skills-introduction-to-github/actions/workflows/4-merge-your-pull-request.yml/badge.svg?branch=my-first-branch)
 
 _Get started using GitHub in less than an hour._
 
@@ -29,13 +29,13 @@ In this course, you will:
 
 1. Right-click **Copy Course** and open the link in a new tab.
    
-   <a id="copy-course" href="https://github.com/new?template_owner=chriswblake&template_name=introduction-to-github&owner=%40me&name=skills-introduction-to-github&description=My+clone+repository&visibility=public">
-      <img src="https://img.shields.io/badge/📠_Copy_Course-008000" height="25pt"/>
+   <a id="copy-course">
+      <img src="https://img.shields.io/badge/📠_Copy_Course-AAA" height="25pt"/>
    </a>
 
 2. In the new tab, most of the prompts will automatically fill in for you.
    - For owner, choose your personal account or an organization to host the repository.
-   - We recommend creating a public repository, as private repositories will [use Actions minutes](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions).
+   - We recommend creating a public repository, as private repositories will [use Actions minutes](https://docs.github.chttps://github.com/wolz-CODElife/skills-introduction-to-github/billing/managing-billing-for-github-actions/about-billing-for-github-actions).
    - Scroll down and click the **Create repository** button at the bottom of the form.
 
 3. After your new repository is created, wait about 20 seconds for the course to be prepared. 
@@ -44,8 +44,8 @@ In this course, you will:
 
 4. Click **Start Lesson**. Follow the step-by-step instructions and feedback will be provided as you progress.
    
-   <a id="start_lesson">
-      <img src="https://img.shields.io/badge/🚀_Start_Lesson-AAA" height="25pt"/>
+   <a id="start_lesson" href="https://github.com/wolz-CODElife/skills-introduction-to-github/issues/1">
+      <img src="https://img.shields.io/badge/🚀_Start_Lesson-008000" height="25pt"/>
    </a>
 
 > [!IMPORTANT]
