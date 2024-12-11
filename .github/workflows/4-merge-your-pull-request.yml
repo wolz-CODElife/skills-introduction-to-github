@@ -1,0 +1,128 @@
+name: Step 4 # Merge your pull request
+
+# Checks if the learner completed tasks for step 4.
+# - Triggers when the user merges the pull request.
+# - If all checks pass, the workflow is disabled so it doesn't run again. As such, workflow status badge will change to green.
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+permissions:
+  contents: write
+  actions: write
+  issues: write
+
+jobs:
+  check_step_4_work:
+    name: Check step 4 work
+    runs-on: ubuntu-latest
+    if: |
+      !github.event.repository.is_template &&
+      github.head_ref == 'my-first-branch' &&
+      github.event.pull_request.merged == true
+
+    steps:
+      - name: Mark lesson finished
+        uses: chriswblake/action-add-skill-feedback@develop
+        with:
+          issue-number: 1
+          comment-template: 'lesson-review'
+          update-recent: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  post_review_content:
+    name: Post review content
+    needs: check_step_4_work
+    runs-on: ubuntu-latest
+    if: |
+      !github.event.repository.is_template &&
+      github.head_ref == 'my-first-branch' &&
+      github.event.pull_request.merged == true
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Add issue comment with review content
+        run: |
+          # Load review content
+          next_step_content=$(cat steps/x-review.md)
+          
+          # Update image links to be absolute
+          target='steps/'
+          replacement='https://github.com/${{ github.repository }}/blob/main/steps/'
+          next_step_content=$(echo "$next_step_content" | sed "s|$target|$replacement|g")
+          
+          # Append "?raw=true" to image links
+          target='.png'
+          replacement='.png?raw=true'
+          next_step_content=$(echo "$next_step_content" | sed "s|$target|$replacement|g")
+          
+          # Add content to issue
+          gh issue comment 1  --body "$next_step_content"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  finish_course:
+    name: Finish course
+    needs: post_review_content
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      
+      - name: Configure Git user
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@users.noreply.github.com
+
+      - name: Add "Congratulations" to README.md
+        run: |
+          # Load existing README
+          orig_readme=$(cat README.md)
+
+          message="⭐️ Congratulations! You've completed this lesson! ⭐️  
+          If you would like to practice the steps again, you can retrace your steps below.  
+          We won't grade you this time. 😉
+          "
+          echo "$message $orig_readme" > README.md
+          git add README.md
+          git commit --message="Congratulations!🎉"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Final message
+        uses: chriswblake/action-add-skill-feedback@develop
+        with:
+          issue-number: 1
+          comment-template: 'lesson-finished'
+          comment-template-vars: '{
+            "login": "${{ github.actor }}",
+            "repo_full_name": "${{ github.repository }}"
+          }'
+          update-recent: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Close issue
+        run: gh issue close 1
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Disable workflow to prevent running again
+        run: gh workflow disable "${{github.workflow}}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
